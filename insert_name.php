@@ -2,7 +2,9 @@
 	//connect to the database
 	include 'connect.php';
 
+	//retrieve the cookie
 	$user_identifier = $_COOKIE["user"];
+	
 	// sql to create table
 	$sql_create = "CREATE TABLE ".$user_identifier." (
 	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 

@@ -4,18 +4,17 @@
 	//retrieve the identifier from the cookie to access table
 	$user_identifier = $_COOKIE["user"];
 
-	//insert the decision data from the form into the database
-	$value1 = $_POST['d_wtp'];//the array
-	$value2 = $_POST['d_location'];//the array
+	//assign the decision data from the form into two constants
+	$value1 = $_POST['d_wtp'];
+	$value2 = $_POST['d_location'];
+	
+	//make a change to the unit total based on the decision
+	$value3 = $current_units-$value1;
 	
 	//query the database for time value
-	$query = "INSERT INTO ".$user_identifier." (location,wtp) VALUES ('$value2','$value1')";
-	$result = mysqli_query($conn,$query) or die(mysql_error($conn));
+	$sql = "INSERT INTO ".$user_identifier." (location,wtp,units) VALUES ('$value2','$value1','$value3')";
+	$conn->query($sql);
 
-	if(!mysql_query($sql)){
-		die('Error:' . mysql_error());
-	}
-
-	echo 'Click <a href="/interface"> here</a> for next turn';
+	echo 'Click <a href="mainpage.php"> here</a> for next turn';
 	$conn->close();
 ?>
